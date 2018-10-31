@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Movie from "./Movie";
+import $ from 'jquery';
+// import Button from "./Button";
 
 class App extends Component {
   // Render: componentWillMount() -> render() -> componentDidMount()
@@ -16,14 +18,21 @@ class App extends Component {
 
   //err ->.catch(function(err) { console.log(err) });
   state = {};
-
+  url = {};
   componentDidMount() {
-    this._getMovies();
+    this._getMovies('rating');
+  }
+
+  _endWindow = () => { 
+    $(window).scroll(function () { 
+      if ( $(window).scrollTop() === $(document).height() - $(window).height()) {
+        console.log("전역함수를 불러와야하는데..")
+      }
+    });
   }
 
   _renderMovies = () => {
     const movies = this.state.movies.map(movie => {
-      console.log(movie);
       return (
         <Movie
           title={movie.title}
@@ -34,29 +43,99 @@ class App extends Component {
         />
       );
     });
+    // console.log(this.state.movies.length)
     return movies;
   };
 
-  _getMovies = async () => {
-    const movies = await this._callApi();
+  /*
+  _renderButton = () => {
+    let n = false;
+    return (
+      <Button />
+    )
+  }
+*/
+
+  _getMovies = async (sort, num) => {
+    const movies = await this._callApi(sort, num);
     this.setState({
       movies
     });
   };
 
+  _moreMovies = () => {
+    console.log("this.state.moives.length")
+    //let a = this.state.movies? undefined : this.state.movies.length;
+    /*
+    const movies = this._callApi(a);
+    this.setState({
+      movies
+    })
+    */
+  }
+  
   //await은 실행이 완료되면(성공적인 실행이 아닌) 그값을 불러온다.
 
-  _callApi = () => {
-    return fetch("https://yts.am/api/v2/list_movies.json?sort_by=rating")
+  _callApi = (sort, num) => {
+    if(!sort && !num) {
+    return fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+      .then(save => this.url.address = save)
       .then(response => response.json()) //response는 아무 값이나 가능하며 하나의 애트리뷰트를 가져와 보여준다.
       .then(json => json.data.movies)
       .catch(err => console.log(err));
+    } else if (this.url.address) {
+      return fetch(`${this.url.address}&limit=${num}`)
+      .then(save => this.url.address = save)
+      .then(response => response.json())
+      .then(json => json.data.movies)
+      .catch(err => console.log(err));
+    } else {
+      return fetch(`https://yts.am/api/v2/list_movies.json?sort_by=${sort}&limit=${num}`)
+      .then(save => this.url.address = save)
+      .then(response => response.json())
+      .then(json => json.data.movies)
+      .catch(err => console.log(err));
+    }
   };
+
+  button_rating = () => {
+    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=rating',
+    console.log(this.url.address),
+    this._getMovies(this.url.address)
+  }
+  button_title = () => {
+    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=title',
+    console.log(this.url.address),
+    this._getMovies(this.url.address)
+  }
+  button_download = () => {
+    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=download_count',
+    console.log(this.url.address),
+    this._getMovies(this.url.address)
+  }
+  button_like = () => {
+    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=like_count',
+    console.log(this.url.address),
+    this._getMovies(this.url.address)
+  }
+  button_date = () => {
+    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=date_added',
+    console.log(this.url.address),
+    this._getMovies(this.url.address)
+  }
+
 
   render() {
     const { movies } = this.state;
     return (
-      <div className={movies ? "App" : "App-Loading"}>
+      <div className={movies ? "App" :  "App-Loading"}>
+        <div className="Botton">
+          <button onClick={this.button_rating} >rating</button>
+          <button onClick={this.button_title} >title</button>
+          <button onClick={this.button_download} >download_count</button>
+          <button onClick={this.button_like} >like_count</button>
+          <button onClick={this.button_date} >date_added</button>
+        </div>
         {this.state.movies ? this._renderMovies() : "Loding..."}
       </div>
     );

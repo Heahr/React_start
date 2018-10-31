@@ -1,0 +1,8 @@
+.Button {
+    z-index: 1;
+    position: fixed;
+    width: 80%;
+    top: 30px;
+    justify-content: space-between;
+    display: flex;
+}
