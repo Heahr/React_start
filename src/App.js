@@ -19,16 +19,23 @@ class App extends Component {
   //err ->.catch(function(err) { console.log(err) });
   state = {};
   url = {};
+  
+  // constructor(props) {
+  //   super(props);
+  //   this._drag = this._drag.bind(this);
+  // }
+  
   componentDidMount() {
     this._getMovies('rating');
-  }
-
-  _endWindow = () => { 
-    $(window).scroll(function () { 
+    $(window).scroll(() => { 
       if ( $(window).scrollTop() === $(document).height() - $(window).height()) {
-        console.log("전역함수를 불러와야하는데..")
+        this._drag();
       }
     });
+  }
+
+  _drag = () => {
+    console.log("this.state.movies.length")
   }
 
   _renderMovies = () => {
@@ -99,28 +106,28 @@ class App extends Component {
   };
 
   button_rating = () => {
-    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=rating',
-    console.log(this.url.address),
+    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=rating'
+    console.log(this.url.address)
     this._getMovies(this.url.address)
   }
   button_title = () => {
-    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=title',
-    console.log(this.url.address),
+    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=title'
+    console.log(this.url.address)
     this._getMovies(this.url.address)
   }
   button_download = () => {
-    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=download_count',
-    console.log(this.url.address),
+    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=download_count'
+    console.log(this.url.address)
     this._getMovies(this.url.address)
   }
   button_like = () => {
-    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=like_count',
-    console.log(this.url.address),
+    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=like_count'
+    console.log(this.url.address)
     this._getMovies(this.url.address)
   }
   button_date = () => {
-    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=date_added',
-    console.log(this.url.address),
+    this.url.address = 'https://yts.am/api/v2/list_movies.json?sort_by=date_added'
+    console.log(this.url.address)
     this._getMovies(this.url.address)
   }
 
