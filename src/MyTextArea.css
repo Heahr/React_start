@@ -1,0 +1,9 @@
+.MyTextArea {
+    position: fixed;
+    top: 30px;
+    right: 50px;
+    border: 1px solid gray;
+    width: 200px;
+    height: 350px;
+    background-color: black;
+}

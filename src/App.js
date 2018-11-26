@@ -1,8 +1,10 @@
-import React, { Component } from "react";
-import "./App.css";
-import Movie from "./Movie";
+import React, { Component } from 'react';
+import './App.css';
+import Movie from './Movie';
+import Buttom from './Buttom';
+import MyTextArea from './MyTextArea';
 import $ from 'jquery';
-// import Button from "./Button";
+// import Button from './Button';
 
 class App extends Component {
   // Render: componentWillMount() -> render() -> componentDidMount()
@@ -131,7 +133,6 @@ class App extends Component {
     this._getMovies(this.url.address)
   }
 
-
   render() {
     const { movies } = this.state;
     return (
@@ -143,7 +144,16 @@ class App extends Component {
           <button onClick={this.button_like} >like_count</button>
           <button onClick={this.button_date} >date_added</button>
         </div>
-        {this.state.movies ? this._renderMovies() : "Loding..."}
+        <div className='fixed'>
+          Text
+          <div>
+            <MyTextArea />
+          </div>
+        </div>
+        {this.state.movies ? this._renderMovies(): "Loding..."}
+        <div className='Buttom'>
+          <Buttom />
+        </div>
       </div>
     );
   }

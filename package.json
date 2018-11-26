@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-webpack": "0.0.6",
     "jquery": "^3.3.1",
     "prop-types": "^15.6.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.6.1",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.6.1",
     "react-lines-ellipsis": "^0.13.2",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "save": "^2.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
