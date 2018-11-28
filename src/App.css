@@ -35,15 +35,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.fixed {
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  margin: 10px;
-  border-radius: 5px;
-  border: 2px solid gray;
-  padding: 2px 4px;
-  background-color: black;
-  color: white;
-}

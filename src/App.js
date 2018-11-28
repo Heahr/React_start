@@ -133,6 +133,17 @@ class App extends Component {
     this._getMovies(this.url.address)
   }
 
+  _textBox = () => {
+    if(this.toggleTextBox === "none") {
+      this.toggleTextBox = "";
+      console.log(this.toggleTextBox);
+    }
+    else{
+      this.toggleTextBox = "none";
+      console.log(this.toggleTextBox);
+    }
+  }
+
   render() {
     const { movies } = this.state;
     return (
@@ -144,12 +155,7 @@ class App extends Component {
           <button onClick={this.button_like} >like_count</button>
           <button onClick={this.button_date} >date_added</button>
         </div>
-        <div className='fixed'>
-          Text
-          <div>
-            <MyTextArea />
-          </div>
-        </div>
+        <MyTextArea />
         {this.state.movies ? this._renderMovies(): "Loding..."}
         <div className='Buttom'>
           <Buttom />

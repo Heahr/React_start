@@ -1,9 +1,57 @@
-.MyTextArea {
+.TextArea {
     position: fixed;
-    top: 30px;
-    right: 50px;
+    top: 12px;
+    right: 35px;
     border: 1px solid gray;
     width: 200px;
     height: 350px;
+    border-radius: 5px;
     background-color: black;
+    z-index: 1;
+}
+
+.fixed {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 2px solid gray;
+    padding: 2px 4px;
+    background-color: black;
+    color: white;
+    z-index: 1;
+}
+
+.TextArea--top {
+    height: 9%;
+    padding: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.TextArea--top--content {
+    width: 100%;
+    padding-top: 5px;
+    text-align: center;
+    border: 1px solid gray;
+    margin-right: 5px;
+}
+
+.TextArea--top--content:last-child {
+    margin-right: 0px;
+}
+
+.TextArea--main {
+    height: 81%;
+    padding: 4px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.TextArea--bottom {
+    height: 4%;
+    width: 100%;
+    padding: 1px;
+    text-align: center;
 }
