@@ -157,9 +157,9 @@ class App extends Component {
         </div>
         <MyTextArea />
         {this.state.movies ? this._renderMovies(): "Loding..."}
-        <div className='Buttom'>
+        {/* <div className='Buttom'>
           <Buttom />
-        </div>
+        </div> */}
       </div>
     );
   }

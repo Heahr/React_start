@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./MyTextArea.css";
+import $ from 'jquery';
 
 class MyTextArea extends Component {
     state = {
@@ -115,17 +116,29 @@ class MyTextArea extends Component {
 export default MyTextArea;
 
 class TextArea extends Component {
+
+    _dropdown () {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
     render() {
         return (
             <div className='TextArea'>
                 <div className='TextArea--top'>
-                    <div className='TextArea--top--content'>a</div>
+                    <div className='TextArea--top--content' >
+                        <button onClick={this._dropdown}>a</button>
+                        <div id="myDropdown" className="dropdown-content">
+                            <a href="#home">Home</a>
+                            <a href="#about">About</a>
+                            <a href="#contact">Contact</a>
+                        </div>
+                    </div>
                     <div className='TextArea--top--content'>b</div>
                     <div className='TextArea--top--content'>c</div>
                     <div className='TextArea--top--content'>d</div>
                 </div>
-                <div className='TextArea--main' contentEditable='true'>매인</div>
-                <div className='TextArea--bottom'>제출?</div>
+                <div className='TextArea--main' contentEditable='true'>main</div>
+                <button className='TextArea--bottom'>제출</button>
             </div>
         );
     }
