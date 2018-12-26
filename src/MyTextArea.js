@@ -12,7 +12,7 @@ class MyTextArea extends Component {
             isHidden: !this.state.isHidden
         })
     }
-
+    
     /*
     getScrollOffsets = (w) => {
         w = w || window;
@@ -99,6 +99,16 @@ class MyTextArea extends Component {
     }
     */
 
+    _getSelect () {
+        var selectionText = "";
+        if (document.getSelection) {
+            selectionText = document.getSelection();
+        } else if (document.selection) {
+            selectionText = document.selection.createRange().text;
+        }
+        return console(selectionText);
+    }
+
     render() {
         return (
             <div className='fixed'>
@@ -121,24 +131,50 @@ class TextArea extends Component {
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
+    _getSelect () {
+        let key = window.getSelection();
+        alert(key);
+    }
+
     render() {
         return (
             <div className='TextArea'>
                 <div className='TextArea--top'>
                     <div className='TextArea--top--content' >
-                        <button onClick={this._dropdown}>a</button>
+                        <button onClick={this._dropdown}>text</button>
                         <div id="myDropdown" className="dropdown-content">
-                            <a href="#home">Home</a>
-                            <a href="#about">About</a>
-                            <a href="#contact">Contact</a>
+                            <a href="#home">8pt</a>
+                            <a href="#about">10pt</a>
+                            <a href="#contact">12pt</a>
                         </div>
                     </div>
-                    <div className='TextArea--top--content'>b</div>
-                    <div className='TextArea--top--content'>c</div>
-                    <div className='TextArea--top--content'>d</div>
+                    <div className='TextArea--top--content'>
+                        <button onClick={this._dropdown}>bold</button>
+                            <div id="myDropdown" className="dropdown-content">
+                                <a href="#home">Home</a>
+                                <a href="#about">About</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </div>
+                    <div className='TextArea--top--content'>
+                        <button onClick={this._dropdown}>??</button>
+                            <div id="myDropdown" className="dropdown-content">
+                                <a href="#home">Home</a>
+                                <a href="#about">About</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </div>
+                    <div className='TextArea--top--content'>
+                        <button onClick={this._dropdown}>??</button>
+                            <div id="myDropdown" className="dropdown-content">
+                                <a href="#home">Home</a>
+                                <a href="#about">About</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </div>
                 </div>
                 <div className='TextArea--main' contentEditable='true'>main</div>
-                <button className='TextArea--bottom'>제출</button>
+                <button className='TextArea--bottom' onClick={this._getSelect}>제출</button>
             </div>
         );
     }
